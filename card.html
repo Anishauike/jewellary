@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <script>
+        // Load cart items and display them
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartTable = document.getElementById('cartTable');
+            const totalPriceElement = document.getElementById('totalPrice');
+
+            // Initialize totalPrice to 0 outside the loop
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${item.name}</td><td>$${item.price}</td>`;
+                cartTable.appendChild(row);
+
+                // Add item price to totalPrice within the loop
+                totalPrice += item.price;
+            });
+
+            // Update the total price element after the loop
+            totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`; // Format to 2 decimal places
+        }
+
+        // Clear the cart
+        function clearCart() {
+            localStorage.removeItem('cart');
+            alert('Cart cleared!');
+            location.reload();
+        }
+
+        // Proceed to the payment page
+        function proceedToPayment() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            window.location.href = 'payment.html';
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .cart-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .cart-table th, .cart-table td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .cart-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cart-summary .coupon {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cart-summary .coupon input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            flex: 1;
+        }
+
+        .cart-summary .coupon button {
+            padding: 10px 15px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .totals {
+            text-align: right;
+        }
+
+        .totals p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .totals .total {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .cart-summary {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .totals {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body onload="loadCart()">
+    <div class="cart-container">
+        <header>
+            <h1>Shopping Cart</h1>
+        </header>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="cartTable"></tbody>
+        </table>
+        <div class="cart-summary">
+            <div class="coupon">
+                <input type="text" placeholder="Coupon code">
+                <button>Apply</button>
+            </div>
+            <div class="totals">
+                <p class="total">Total: <span id="totalPrice">$1500</span></p>
+            </div>
+        </div>
+        <button class="checkout-btn" onclick="proceedToPayment()">Proceed to Checkout</button>
+        <button class="checkout-btn" onclick="clearCart()">Clear Cart</button>
+    </div>
+</body>
+</html>

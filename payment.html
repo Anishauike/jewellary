@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAYMENT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            margin: 30px;
+            padding: 0;
+            background: url(back.avif)no-repeat center center/cover;;
+            color: black;
+            font-style: oblique;
+        }
+
+        .order-form-container {
+            max-width: 900px;
+            margin: 60px auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .order-form-header {
+            background: linear-gradient(135deg, #333, #555);
+            color: #fff;
+            text-align: center;
+            padding: 20px 10px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            
+        }
+        .order-form-header img{
+            width: 10%;
+            overflow: hidden;
+        }
+
+        .order-form-header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .order-form-header p {
+            font-size: 1rem;
+            margin: 5px 0 0;
+            color: pink;
+        }
+
+        .order-form-container .form-content {
+            padding: 40px;
+        }
+
+        .order-form-container .form-group {
+            margin-bottom: 20px;
+        }
+
+        .order-form-container label {
+
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .order-form-container input,
+        .order-form-container select,
+        .order-form-container textarea {
+            width: 100%;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .order-form-container button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #333, #555);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .order-form-container button:hover {
+            background: linear-gradient(135deg, #555, #777);
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .popup-card {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .popup-card p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .popup-card button {
+            background: linear-gradient(135deg, #555, #777);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .popup-card button:hover {
+            background: linear-gradient(135deg, #777, #999);
+        }
+
+        #paymentFormContainer {
+            margin-top: 20px;
+            display: none;
+        }
+
+        #paymentFormContainer h3 {
+            margin-bottom: 10px;
+        }
+       
+        @media (max-width: 768px) {
+    .order-form-container {
+        width: 90%; /* Make the form take up 90% of the screen width */
+        margin: 20px auto; /* Adjust margin for better spacing */
+    }
+
+    .product-image {
+        width: 80px; /* Reduce the product image size */
+        height: 80px;
+    }
+
+    .order-form-header h1 {
+        font-size: 2rem; /* Make the header text smaller */
+    }
+
+    .order-form-header p {
+        font-size: 0.9rem; /* Reduce the subheading font size */
+    }
+
+    .order-form-container input,
+    .order-form-container select,
+    .order-form-container textarea {
+        font-size: 0.9rem; /* Make input text smaller */
+    }
+
+    .order-form-container button {
+        font-size: 1rem; /* Adjust button text size */
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<div class="order-form-container">
+    <div class="order-form-header">
+        <img src="logo.jpeg">
+        <h1>Place Your Order</h1>
+       
+    </div>
+    
+    <div class="form-content">
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Shipping Address</label>
+                <textarea id="address" name="address" placeholder="Enter your full shipping address" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="watch-model">Select Quantity</label>
+                <select id="watch-model" name="watch_model" required>
+                    <option value="">-- Select --</option>
+                    <option value="model1">1</option>
+                    <option value="model2">2</option>
+                    <option value="model3">3</option>
+                    <option value="model4">4</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="payment">Payment Method</label>
+                <select id="payment" name="payment_method" required>
+                    <option value="">-- Select Payment Method --</option>
+                    <option value="credit_card">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="bank_transfer">Bank Transfer</option>
+                    <option value="cod">Cash on Delivery</option>
+                </select>
+            </div>
+
+            <div id="paymentFormContainer">
+                <div id="creditCardForm" style="display: none;">
+                    <h3>Credit Card Details</h3>
+                    <div class="form-group">
+                        <label for="cc-number">Card Number</label>
+                        <input type="text" id="cc-number" name="cc_number" placeholder="Enter your card number">
+                    </div>
+                    <div class="form-group">
+                        <label for="cc-expiry">Expiry Date</label>
+                        <input type="text" id="cc-expiry" name="cc_expiry" placeholder="MM/YY">
+                    </div>
+                    <div class="form-group">
+                        <label for="cc-cvv">CVV</label>
+                        <input type="text" id="cc-cvv" name="cc_cvv" placeholder="Enter CVV">
+                    </div>
+                </div>
+
+                <div id="paypalForm" style="display: none;">
+                    <h3>PayPal Details</h3>
+                    <div class="form-group">
+                        <label for="paypal-email">PayPal Email</label>
+                        <input type="email" id="paypal-email" name="paypal_email" placeholder="Enter your PayPal email">
+                    </div>
+                </div>
+
+                <div id="bankTransferForm" style="display: none;">
+                    <h3>Bank Transfer Instructions</h3>
+                    <p>Please transfer the amount to the following bank account:</p>
+                    <p>Bank: ABC Bank</p>
+                    <p>Account Number: 1234567890</p>
+                    <p>IFSC Code: ABCD0123456</p>
+                </div>
+            </div>
+
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+</div>
+
+<div class="popup-overlay" id="popupOverlay">
+    <div class="popup-card">
+        <h2>Order Placed Successfully!</h2>
+        <p>Thank you for your purchase. Your luxury watch will be shipped soon.</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<script>
+    const paymentSelect = document.getElementById('payment');
+    const paymentFormContainer = document.getElementById('paymentFormContainer');
+    const creditCardForm = document.getElementById('creditCardForm');
+    const paypalForm = document.getElementById('paypalForm');
+    const bankTransferForm = document.getElementById('bankTransferForm');
+    const orderForm = document.getElementById('orderForm');
+    const popupOverlay = document.getElementById('popupOverlay');
+
+    paymentSelect.addEventListener('change', function () {
+        creditCardForm.style.display = 'none';
+        paypalForm.style.display = 'none';
+        bankTransferForm.style.display = 'none';
+        paymentFormContainer.style.display = 'block';
+
+        const selectedPayment = paymentSelect.value;
+        if (selectedPayment === 'credit_card') {
+            creditCardForm.style.display = 'block';
+        } else if (selectedPayment === 'paypal') {
+            paypalForm.style.display = 'block';
+        } else if (selectedPayment === 'bank_transfer') {
+            bankTransferForm.style.display = 'block';
+        } else {
+            paymentFormContainer.style.display = 'none';
+        }
+    });
+
+    orderForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        popupOverlay.style.display = 'block';
+    });
+
+    function closePopup() {
+        popupOverlay.style.display = 'none';
+    }
+</script>
+<script>
+    orderForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    popupOverlay.style.display = 'block';
+    setTimeout(() => {
+        window.location.href = 'index.html'; 
+    }, 3000);
+});
+</script>
+</body>
+</html>

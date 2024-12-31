@@ -1,0 +1,145 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    margin-top: 30px;
+    padding: 0;
+    background-color: #f9f9f9;
+    font-size: 40px;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 50px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 30px;
+  }
+  
+  .progress-bar {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+  }
+  
+  .progress-bar span {
+    font-size: 16px;
+    color: #bbb;
+  }
+  
+  .progress-bar .active {
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .payment-section {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .payment-form, .order-summary {
+    width: 60%;
+  }
+  
+  .payment-form h2, .order-summary h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  input, select, textarea {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .card-details {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .card-details > div {
+    width: 48%;
+  }
+  
+  .save-card {
+    display: flex;
+    align-items: left;
+    margin-bottom: 10px;
+
+  }
+  
+  .save-card label {
+    margin-left: 1px;
+    font-size:15px;
+  }
+  
+  .address {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .back-btn, .continue-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .back-btn {
+    background-color: #ddd;
+  }
+  
+  .continue-btn {
+    background-color: #5e72e4;
+    color: #fff;
+  }
+  
+  .order-summary ul {
+    list-style: none;
+    padding: 0;
+    font-size: 20px;
+  }
+  
+  .order-summary ul li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  
+  .summary-totals {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+  
+  .summary-totals p {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
+  
+  .summary-totals .total {
+    font-size: 16px;
+    font-weight: bold;
+  }
