@@ -4,24 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Furniture Store</title>
-  <script>
-    // Function to handle the "Add to Cart" button click
-function handleAddToCart() {
-  const isLoggedIn = false; // Replace with actual login check logic
-
-  if (!isLoggedIn) {
-    alert("Please log in first to add items to the cart.");
-  } else {
-    // Logic to add the item to the cart if the user is logged in
-    console.log("Item added to cart!");
-  }
-}
-
-// Attach the function to all "Add to Cart" buttons
-document.querySelectorAll(".add-to-cart-btn").forEach(button => {
-  button.addEventListener("click", handleAddToCart);
-});
-  </script>
+ 
   <link rel="stylesheet" href="home.css">
   <style>
   * {
@@ -509,4 +492,22 @@ document.querySelectorAll(".add-to-cart-btn").forEach(button => {
     <p>&copy; 2024 Furnish. All Rights Reserved.</p>
   </footer>
 </body>
+   <script>
+    // Function to handle the "Add to Cart" button click
+function handleAddToCart() {
+  const isLoggedIn = false; // Replace with actual login check logic
+
+  if (!isLoggedIn) {
+    alert("Please log in first to add items to the cart.");
+  } else {
+    // Logic to add the item to the cart if the user is logged in
+    console.log("Item added to cart!");
+  }
+}
+
+// Attach the function to all "Add to Cart" buttons
+document.querySelectorAll(".add-to-cart-btn").forEach(button => {
+  button.addEventListener("click", handleAddToCart);
+});
+  </script>
 </html>
