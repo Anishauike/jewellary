@@ -185,11 +185,13 @@ nav a {
 }
 
 .rings-grid {
-  display: flex;
-  padding: 10px;
-  gap: 20px;
-  flex-wrap: wrap; /* Allow rings to wrap onto new lines on smaller screens */
-}
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 20px;
+    flex-wrap: nowrap;
+  }
 
 .rings-card {
   background: #ffffff;
