@@ -3,171 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
+  <title>Login and Signup</title>
   <link rel="stylesheet" href="sign-in.css">
-  <style>
-    body {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-style: oblique;
-  margin: 0;
-  padding: 0;
-  background-color: white;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.form-container {
-  background: white;
-  padding: 20px 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-}
-
-h1 {
-  margin-bottom: 20px;
-  color: #333;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  text-align: left;
-  margin: 10px 0 5px;
-  font-size: 14px;
-  color: #555;
-}
-
-input {
-  padding: 10px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-input:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-.btn {
-  background: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background: #0056b3;
-}
-
-p {
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-p a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-p a:hover {
-  text-decoration: underline;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    height: auto;
-    padding: 20px;
-  }
-
-  .form-container {
-    width: 90%;
-    padding: 15px;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  input, .btn {
-    font-size: 14px;
-  }
-
-  p {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .form-container {
-    width: 95%;
-    padding: 10px;
-  }
-
-  h1 {
-    font-size: 18px;
-  }
-
-  input, .btn {
-    font-size: 14px;
-  }
-
-  p {
-    font-size: 12px;
-  }
-}
-
-  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="form-container">
-      <h1>Sign Up</h1>
-      <form id="registerForm">
-        <label for="firstname">First Name</label>
-        <input type="text" id="firstname" placeholder="Enter your first name" required>
-        
-        <label for="lastname">Last Name</label>
-        <input type="text" id="lastname" placeholder="Enter your last name" required>
-        
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Enter your email" required>
-        
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Enter your password" required>
-        
-        <button type="submit" class="btn">Sign Up</button>
-      </form>
-      <p>
-        Already have an account? <a href="login.html">Login In</a>
-      </p>
+  <div id="container">
+    <div id="login-page" class="page">
+      <div class="left">
+        <h1>Welcome back!</h1>
+      </div>
+      <div class="right">
+        <h2>Login</h2>
+        <p>Please enter your login details to log in.</p>
+        <form id="login-form">
+          <input type="email" id="login-email" placeholder="Email Address" required />
+          <input type="password" id="login-password" placeholder="Password" required />
+          <button type="submit">Log in</button>
+        </form>
+        <p>Don't have an account? <a href="#" id="go-to-signup">Create account</a></p>
+      </div>
+    </div>
+
+    <div id="signup-page" class="page hidden">
+      <div class="left">
+        <h1>Let's get started!</h1>
+      </div>
+      <div class="right">
+        <h2>Create Account</h2>
+        <form id="signup-form">
+          <input type="text" id="signup-name" placeholder="Full Name" required />
+          <input type="email" id="signup-email" placeholder="Email Address" required />
+          <input type="password" id="signup-password" placeholder="Password" required />
+          <button type="submit">Create Account</button>
+        </form>
+        <p>Already have an account? <a href="#" id="go-to-login">Log in</a></p>
+      </div>
+    </div>
+
+    <div id="home-page" class="page hidden">
+      <h1>Welcome to the Home Page!</h1>
+      <p>You are successfully logged in.</p>
     </div>
   </div>
 
-  <script>
-    document.getElementById('registerForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Registration Successful');
-      window.location.href = 'login.html';
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
