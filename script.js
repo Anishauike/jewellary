@@ -33,6 +33,4 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
   } else {
     alert('Login successful!');
     document.getElementById('login-page').classList.add('hidden');
-    document.getElementById('home-page').classList.remove('hidden');
-  }
-});
+    docume
