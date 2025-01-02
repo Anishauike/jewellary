@@ -127,8 +127,7 @@
         <p>Already have an account? <a href="#" id="go-to-login">Log in</a></p>
       </div>
     </div>
-
-    
+  </div>
 
   <script>
     document.getElementById('go-to-signup').addEventListener('click', () => {
@@ -148,9 +147,8 @@
       const password = document.getElementById('signup-password').value;
 
       localStorage.setItem('user', JSON.stringify({ name, email, password }));
-      alert('Account created successfully!');
-      document.getElementById('signup-page').classList.add('hidden');
-      document.getElementById('index.html').classList.remove('hidden');
+      alert('Account created successfully! Redirecting to home page...');
+      window.location.href = 'index.html'; // Redirect to home page
     });
 
     document.getElementById('login-form').addEventListener('submit', (e) => {
@@ -165,10 +163,7 @@
         document.getElementById('signup-page').classList.remove('hidden');
       } else {
         alert('Login successful!');
-        document.getElementById('login-page').classList.add('hidden');
-        document.getElementById('home-page').classList.remove('hidden');
-        // Redirect to login.html
-        window.location.href = 'index.html';
+        window.location.href = 'index.html'; // Redirect to home page
       }
     });
   </script>
