@@ -1,91 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="css/contact-us.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — Creative Jewellery</title>
+  <meta name="description" content="Get in touch with Creative Jewellery. We're here to help with custom orders, jewellery care queries, and anything else you need.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/contact-us.css">
 </head>
 <body>
-    <section class="header">
-        <nav class="navbar">
-          <ul>
-            
-            <li><a href="index.html">Home</a></li>
-            <li><a href="product.html">Products</a></li>
-            <li><a href="contact-us.html">Contact Us</a></li>
-            <li><a href="about-us.html">About Us</a></li>
-            <li><a href="sign-in.html">Sign In</a></li>
-          </ul>
-        </nav>
-        </section>
- <section class="heading">
- <h1>Contact Us</h1>
-            <p> Our dedicated team is committed to providing exceptional customer service and ensuring your Furnish experience is nothing short of exceptional. We look forward to connecting with you!".Have a question, comment, or concern? We'd love to hear from you! At Creative Jewellery, we're committed to providing exceptional customer service. Whether you're inquiring about a custom piece, seeking guidance on jewellery care, or simply want to share your feedback, our dedicated team is here to help. Please don't hesitate to reach out to us via phone, email, or through our website. We look forward to connecting with you!</p>
-   </section>
-    
-   <section class="get-in-touch">
-    <h2>Get In Touch</h2>
-    <form>
-      <input type="text" name="name" placeholder="Name">
-      <input type="email" name="email" placeholder="Email">
-      <input type="text" name="subject" placeholder="Subject">
-      <textarea name="message" placeholder="Message"></textarea>
-      <button type="submit">Send Now</button>
-    </form><br><br>
-    <iframe
-      src="https://www.google.com/maps/embed?..."
-      width="100%"
-      height="300"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy">
-    </iframe>
-  </section><br><hr>
 
-        <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Subx</h3>
-                <p>Drive growth, retain customers, and scale up effortlessly with Subx.</p>
-                <p>mailto@subx.com</p>
-            </div>
+  <!-- ── Navbar ───────────────────────────────── -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">Creative <span>Jewellery</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="product.html">Products</a>
+      <a href="about-us.html">About Us</a>
+      <a href="contact-us.html" class="active">Contact</a>
+      <a href="login.html">Sign In</a>
+      <a href="card.html">Cart</a>
+    </div>
+  </nav>
 
-            <div class="footer-section">
-                <h3>Features</h3>
-                <ul>
-                    <li>Business Messenger</li>
-                    <li>Customizable bots</li>
-                    <li>Automated answers</li>
-                    <li>Product Tours</li>
-                </ul>
-            </div>
+  <!-- ── Page Hero ────────────────────────────── -->
+  <section class="contact-hero">
+    <div class="fade-in-up">
+      <h1>Get In Touch</h1>
+      <p>We'd love to hear from you. Our team is always ready to help.</p>
+    </div>
+  </section>
 
-            <div class="footer-section">
-                <h3>Resources</h3>
-                <ul>
-                    <li>Whitepapers & Blog</li>
-                    <li>Watch a Demo</li>
-                    <li>Product Glossary</li>
-                    <li>Industry Reports</li>
-                </ul>
-            </div>
+  <!-- ── Contact Main ──────────────────────────── -->
+  <section class="contact-main">
+    <div class="contact-grid">
 
-            <div class="footer-section">
-                <h3>Company</h3>
-                <ul>
-                    <li>About</li>
-                    <li>Customers</li>
-                    <li>Community Forum</li>
-                    <li>Terms and Privacy</li>
-                </ul>
-            </div>
+      <!-- Info Cards -->
+      <div class="contact-info fade-in-up delay-1">
+        <div class="info-card">
+          <div class="info-icon">📍</div>
+          <h3>Visit Us</h3>
+          <p>123 Jewellery Lane<br>Bandra West, Mumbai<br>Maharashtra, India 400050</p>
         </div>
-
-        <div class="copyright">
-            <p>&copy; Copyright Subx. All rights reserved.</p>
-            <p>Made with love by Mahative</p>
+        <div class="info-card">
+          <div class="info-icon">📞</div>
+          <h3>Call Us</h3>
+          <p>+91 98765 43210<br>Mon–Sat, 10am–7pm</p>
         </div>
-    </footer>
+        <div class="info-card">
+          <div class="info-icon">✉️</div>
+          <h3>Email Us</h3>
+          <p>hello@creativejewellery.in<br>support@creativejewellery.in</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">🕐</div>
+          <h3>Working Hours</h3>
+          <p>Monday – Saturday<br>10:00 AM – 7:00 PM</p>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-wrap fade-in-up delay-2">
+        <h2>Send Us a Message</h2>
+        <p class="form-desc">Have a question about a custom piece, need help with an order, or just want to say hello? Fill in the form below and we'll get back to you within 24 hours.</p>
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" name="fname" placeholder="Rishika" required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name *</label>
+              <input type="text" id="lname" name="lname" placeholder="Sharma" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cemail">Email Address *</label>
+            <input type="email" id="cemail" name="email" placeholder="rishika@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Custom order enquiry">
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" placeholder="Tell us how we can help you..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; border:none; font-family:'Poppins',sans-serif; cursor:pointer;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Creative <span>Jewellery</span></h3>
+        <p>Crafting exquisite jewellery that celebrates individuality and elegance. Handmade with love since 1954.</p>
+        <div class="social-links" style="margin-top:1.25rem;">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Pinterest">📌</a>
+          <a href="#" aria-label="Twitter">🐦</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="contact-us.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📍 Mumbai, India</p>
+        <p>📞 +91 98765 43210</p>
+        <p>✉️ hello@creativejewellery.in</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Creative Jewellery. All Rights Reserved. Made with ♥ in India.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    // Form submit
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fname = document.getElementById('fname').value.trim();
+      const email = document.getElementById('cemail').value.trim();
+      const msg   = document.getElementById('message').value.trim();
+      if (!fname || !email || !msg) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      alert('Thank you for your message! We will get back to you within 24 hours.');
+      this.reset();
+    });
+  </script>
 </body>
 </html>

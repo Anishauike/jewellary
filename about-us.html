@@ -1,123 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MOSKA - About Us</title>
+  <title>About Us — Creative Jewellery</title>
+  <meta name="description" content="Learn about Creative Jewellery — our story, our founder Rishika Sharma, and our 70-year legacy of crafting luxury handcrafted jewellery.">
+  <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/about-us.css">
 </head>
-
 <body>
-  <section class="header">
-    <nav class="navbar">
-      <ul>
 
-        <li><a href="index.html">Home</a></li>
-        <li><a href="product.html">Products</a></li>
-        <li><a href="contact-us.html">Contact Us</a></li>
-        <li><a href="about-us.html">About Us</a></li>
-        <li><a href="sign-in.html">Sign In</a></li>
-      </ul>
-    </nav>
-  </section>
-
-  <!-- About Section -->
-  <section class="about">
-    <div class="container">
-      <h1>About Us</h1>
-      <p>At Creative Jewellery, we're passionate about crafting exquisite pieces that capture the essence of
-        individuality and personal style.With a legacy of innovation and excellence, our jewellery company has been
-        adorning customers with unique and breathtaking designs for 70 years.Founded by rishika sharma, a visionary
-        jeweller with a keen eye for detail and a love for artistry, <br>Creative Jewellery began as a small workshop
-        with a big dream. Over the years, our team of skilled artisans, designers, and gemmologists has grown,<br> but
-        our commitment to quality, craftsmanship, and customer satisfaction remains unwavering.</p>
+  <!-- ── Navbar ───────────────────────────────── -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">Creative <span>Jewellery</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="product.html">Products</a>
+      <a href="about-us.html" class="active">About Us</a>
+      <a href="contact-us.html">Contact</a>
+      <a href="login.html">Sign In</a>
+      <a href="card.html">Cart</a>
     </div>
-    </div>
-  </section><br>
-  <hr>
-  <!-- FOUNDER Section -->
-  <section class="founder">
-    <div class="content">
-      <h1>Our Founder</h1>
-      <img src="images/FOUNDER.jpeg">
-      <h2>Rishika sharma</h2>
-      <p>"Meet Rishika Sharma, the visionary founder and creative force behind [Company Name], a luxury jewelry brand
-        renowned for its exquisite designs, impeccable craftsmanship, and passion for innovation.
+  </nav>
 
-        With a natural flair for artistry and a keen eye for detail, Rishika's journey in the world of jewelry began
-        with a childhood fascination for the intricate beauty of precious stones and metals. This early passion evolved
-        into a career-spanning dedication to mastering the art of jewelry design.
-
-        Rishika's professional trajectory has been marked by numerous accolades and achievements, including [briefly
-        mention any notable awards, recognition or milestones]. Through her work, Rishika seeks to empower individuals
-        to express their unique personality and style through the language of jewelry.
-
-        At Creative Jewellery, Rishika's commitment to excellence, sustainability, and customer delight has fostered a
-        culture of innovation, where tradition meets modernity, and every piece tells a story. Under her leadership, the
-        company continues to push boundaries, crafting jewelry that not only adorns but also inspires."</p>
+  <!-- ── Page Hero ────────────────────────────── -->
+  <section class="about-hero">
+    <div class="about-hero-content fade-in-up">
+      <h1>Our Story</h1>
+      <p>Seven decades of passion, artistry, and timeless elegance</p>
     </div>
   </section>
 
-
-  <!-- Features Section -->
-  <section class="features">
-    <div class="feature">
-      <img src="images/online shopp.jpeg" alt="Fast Shipping">
-      <h3>Free Shipping</h3>
-      <p>Anytime, Anywhere</p>
+  <!-- ── About Section ────────────────────────── -->
+  <section class="about-section">
+    <div class="about-intro fade-in-up">
+      <h2>About Creative Jewellery</h2>
+      <div class="divider" style="margin-bottom:1.5rem;"></div>
+      <p>
+        At Creative Jewellery, we're passionate about crafting exquisite pieces that capture the essence of individuality
+        and personal style. With a legacy of innovation and excellence, our jewellery company has been adorning customers
+        with unique and breathtaking designs for 70 years.
+      </p>
+      <p style="margin-top:1rem;">
+        Founded by Rishika Sharma, a visionary jeweller with a keen eye for detail and a love for artistry, Creative
+        Jewellery began as a small workshop with a big dream. Over the years, our team of skilled artisans, designers,
+        and gemmologists has grown — but our commitment to quality, craftsmanship, and customer satisfaction remains
+        unwavering.
+      </p>
     </div>
-    <div class="feature">
-      <img src="images/fast delevery.jpeg" alt="Fast Shipping">
-      <h3>premium quality</h3>
-      <p>Quick delivery to your doorstep.</p>
-    </div>
-    <div class="feature">
-      <img src="images/everytime.jpeg" alt="24/7 Support">
-      <h3>100% Secure Checkout</h3>
-      <p>We’re here to assist you anytime.</p>
-    </div>
-
   </section>
-  <!-- Instagram Section -->
-  <section class="instagram">
-    <div class="container">
-      <h2>Follow Our Instagram</h2>
-      <div class="instagram-grid">
-        <img src="images/WhatsApp Image 2024-12-23 at 3.02.12 PM (2).jpeg" alt="Product">
-        <img src="images/4th.jpeg" alt="Product">
-        <img src="images/7th.jpeg" alt="Product">
+
+  <!-- ── Founder ───────────────────────────────── -->
+  <section class="founder-section">
+    <div class="founder-grid">
+      <div class="founder-img fade-in-up delay-1">
+        <img src="images/FOUNDER.jpeg" alt="Rishika Sharma — Founder of Creative Jewellery">
       </div>
-      <p highlight>@Creative_Jewellry</p>
-      <button class="follow-btn">Follow Now</button>
+      <div class="founder-text fade-in-up delay-2">
+        <span class="eyebrow">Meet Our Founder</span>
+        <h2>Rishika Sharma</h2>
+        <div class="gold-line"></div>
+        <p>
+          Meet Rishika Sharma, the visionary founder and creative force behind Creative Jewellery — a luxury jewelry
+          brand renowned for its exquisite designs, impeccable craftsmanship, and passion for innovation.
+        </p>
+        <p>
+          With a natural flair for artistry and a keen eye for detail, Rishika's journey in the world of jewelry began
+          with a childhood fascination for the intricate beauty of precious stones and metals. This early passion evolved
+          into a career-spanning dedication to mastering the art of jewelry design.
+        </p>
+        <p>
+          At Creative Jewellery, Rishika's commitment to excellence, sustainability, and customer delight has fostered
+          a culture of innovation, where tradition meets modernity, and every piece tells a story.
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
+  <!-- ── Features ─────────────────────────────── -->
+  <section class="about-features">
+    <div class="section-title">
+      <h2>Why Choose Us</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item fade-in-up delay-1">
+        <div class="feature-icon">🚚</div>
+        <h3>Free Shipping</h3>
+        <p>Anytime, Anywhere — we deliver right to your door at no extra cost.</p>
+      </div>
+      <div class="feature-item fade-in-up delay-2">
+        <div class="feature-icon">💎</div>
+        <h3>Premium Quality</h3>
+        <p>Every piece is crafted using only the finest materials and gemstones.</p>
+      </div>
+      <div class="feature-item fade-in-up delay-3">
+        <div class="feature-icon">🔒</div>
+        <h3>Secure Checkout</h3>
+        <p>100% secure payments with multiple trusted payment options.</p>
+      </div>
+    </div>
+  </section>
 
-      <div class="footer-column">
-        <h3>Help</h3>
+  <!-- ── Instagram ─────────────────────────────── -->
+  <section class="instagram-section">
+    <div class="section-title">
+      <h2>Follow Our Instagram</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="instagram-grid">
+      <div class="insta-item fade-in-up delay-1">
+        <img src="images/WhatsApp Image 2024-12-23 at 3.02.12 PM (2).jpeg" alt="Creative Jewellery Instagram post — ring">
+      </div>
+      <div class="insta-item fade-in-up delay-2">
+        <img src="images/4th.jpeg" alt="Creative Jewellery Instagram post — necklace">
+      </div>
+      <div class="insta-item fade-in-up delay-3">
+        <img src="images/7th.jpeg" alt="Creative Jewellery Instagram post — earrings">
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2rem;">
+      <p class="insta-handle">@Creative_Jewellry</p>
+      <a href="#" class="btn btn-outline" style="margin-top:1rem;">Follow Now</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Creative <span>Jewellery</span></h3>
+        <p>Crafting exquisite jewellery that celebrates individuality and elegance. Handmade with love since 1954.</p>
+        <div class="social-links" style="margin-top:1.25rem;">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Pinterest">📌</a>
+          <a href="#" aria-label="Twitter">🐦</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
         <ul>
-          <li><a href="#">Terms and Conditions</a></li>
-          <li><a href="#">Privacy Policies</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="contact-us.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">FAQ</a></li>
         </ul>
       </div>
-      <div class="footer-column">
-        <h3>Shop</h3>
-        <ul>
-          <li><a href="#">New Arrival</a></li>
-          <li><a href="#">Bestselling</a></li>
-          <li><a href="#">Moska's Choice</a></li>
-        </ul>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📍 Mumbai, India</p>
+        <p>📞 +91 98765 43210</p>
+        <p>✉️ hello@creativejewellery.in</p>
       </div>
-
     </div>
+    <div class="footer-bottom">
+      <p>© 2024 Creative Jewellery. All Rights Reserved. Made with ♥ in India.</p>
     </div>
-    <p>&copy; 2024 MOSKA. All Rights Reserved.</p>
   </footer>
-</body>
 
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  </script>
+</body>
 </html>

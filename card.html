@@ -1,182 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-    <script>
-        // Load cart items and display them
-        function loadCart() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const cartTable = document.getElementById('cartTable');
-            const totalPriceElement = document.getElementById('totalPrice');
-
-            // Initialize totalPrice to 0 outside the loop
-            let totalPrice = 0;
-
-            cart.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `<td>${item.name}</td><td>$${item.price}</td>`;
-                cartTable.appendChild(row);
-
-                // Add item price to totalPrice within the loop
-                totalPrice += item.price;
-            });
-
-            // Update the total price element after the loop
-            totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`; // Format to 2 decimal places
-        }
-
-        // Clear the cart
-        function clearCart() {
-            localStorage.removeItem('cart');
-            alert('Cart cleared!');
-            location.reload();
-        }
-
-        // Proceed to the payment page
-        function proceedToPayment() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            if (cart.length === 0) {
-                alert('Your cart is empty!');
-                return;
-            }
-            window.location.href = 'payment.html';
-        }
-    </script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-
-        .cart-container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .cart-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        .cart-table th, .cart-table td {
-            text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .cart-table th {
-            background-color: #f4f4f4;
-            font-weight: bold;
-        }
-
-        .cart-summary {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .cart-summary .coupon {
-            display: flex;
-            gap: 10px;
-        }
-
-        .cart-summary .coupon input {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            flex: 1;
-        }
-
-        .cart-summary .coupon button {
-            padding: 10px 15px;
-            background-color: #000;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .totals {
-            text-align: right;
-        }
-
-        .totals p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
-
-        .totals .total {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            padding: 15px;
-            background-color: #000;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .cart-summary {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .totals {
-                text-align: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart — Creative Jewellery</title>
+  <meta name="description" content="Review your selected items and proceed to checkout at Creative Jewellery.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/cart.css">
 </head>
-<body onload="loadCart()">
-    <div class="cart-container">
-        <header>
-            <h1>Shopping Cart</h1>
-        </header>
-        <table class="cart-table">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody id="cartTable"></tbody>
-        </table>
-        <div class="cart-summary">
-            <div class="coupon">
-                <input type="text" placeholder="Coupon code">
-                <button>Apply</button>
-            </div>
-            <div class="totals">
-                <p class="total">Total: <span id="totalPrice">$1500</span></p>
-            </div>
-        </div>
-        <button class="checkout-btn" onclick="proceedToPayment()">Proceed to Checkout</button>
-        <button class="checkout-btn" onclick="clearCart()">Clear Cart</button>
+<body>
+
+  <!-- ── Navbar ───────────────────────────────── -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">Creative <span>Jewellery</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="product.html">Products</a>
+      <a href="about-us.html">About Us</a>
+      <a href="contact-us.html">Contact</a>
+      <a href="login.html">Sign In</a>
+      <a href="card.html" class="active">Cart</a>
     </div>
+  </nav>
+
+  <!-- ── Page Hero ────────────────────────────── -->
+  <section class="cart-hero">
+    <h1>Shopping Cart</h1>
+    <p>Review your selections before checkout</p>
+  </section>
+
+  <!-- ── Cart Content ──────────────────────────── -->
+  <section class="cart-section">
+    <div class="cart-wrapper">
+
+      <!-- Cart Items Table -->
+      <div class="cart-table-wrap fade-in-up">
+        <div class="cart-table-header">
+          <span>Product</span>
+          <span>Price</span>
+          <span>Action</span>
+        </div>
+        <div id="cartItems" class="cart-items-list">
+          <!-- Populated by JS -->
+        </div>
+        <div class="cart-empty" id="emptyMsg" style="display:none;">
+          <p>🛒 Your cart is empty.</p>
+          <a href="product.html" class="btn btn-primary" style="margin-top:1rem;">Start Shopping</a>
+        </div>
+      </div>
+
+      <!-- Cart Summary -->
+      <div class="cart-summary-box fade-in-up delay-2">
+        <h2>Order Summary</h2>
+
+        <div class="coupon-row">
+          <input type="text" id="couponInput" placeholder="Coupon code">
+          <button class="btn btn-outline" onclick="applyCoupon()" style="border-radius:8px; font-family:'Poppins',sans-serif; cursor:pointer; white-space:nowrap;">Apply</button>
+        </div>
+
+        <div class="summary-lines">
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <span id="subtotalDisplay">$0.00</span>
+          </div>
+          <div class="summary-line">
+            <span>Shipping</span>
+            <span class="text-gold">Free</span>
+          </div>
+          <div class="summary-line total-line">
+            <span>Total</span>
+            <span id="totalDisplay">$0.00</span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary checkout-btn" onclick="proceedToPayment()">Proceed to Checkout</button>
+        <button class="btn btn-outline clear-btn" onclick="clearCart()">Clear Cart</button>
+
+        <a href="product.html" class="continue-link">← Continue Shopping</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Creative <span>Jewellery</span></h3>
+        <p>Crafting exquisite jewellery that celebrates individuality and elegance. Handmade with love since 1954.</p>
+        <div class="social-links" style="margin-top:1.25rem;">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Pinterest">📌</a>
+          <a href="#" aria-label="Twitter">🐦</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="contact-us.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📍 Mumbai, India</p>
+        <p>📞 +91 98765 43210</p>
+        <p>✉️ hello@creativejewellery.in</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Creative Jewellery. All Rights Reserved. Made with ♥ in India.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    // ── Cart Functions ──────────────────────────
+    function loadCart() {
+      const cart      = JSON.parse(localStorage.getItem('cart')) || [];
+      const container = document.getElementById('cartItems');
+      const emptyMsg  = document.getElementById('emptyMsg');
+
+      container.innerHTML = '';
+
+      if (cart.length === 0) {
+        emptyMsg.style.display = 'block';
+        updateTotal(0);
+        return;
+      }
+      emptyMsg.style.display = 'none';
+
+      let total = 0;
+      cart.forEach((item, index) => {
+        const price = parseFloat(item.price);
+        total += price;
+        const row = document.createElement('div');
+        row.className = 'cart-item';
+        row.innerHTML = `
+          <span class="item-name">💎 ${item.name}</span>
+          <span class="item-price">$${price.toFixed(2)}</span>
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        `;
+        container.appendChild(row);
+      });
+      updateTotal(total);
+    }
+
+    function updateTotal(amount) {
+      document.getElementById('subtotalDisplay').textContent = `$${amount.toFixed(2)}`;
+      document.getElementById('totalDisplay').textContent    = `$${amount.toFixed(2)}`;
+    }
+
+    function removeItem(index) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      loadCart();
+    }
+
+    function clearCart() {
+      if (confirm('Are you sure you want to clear your cart?')) {
+        localStorage.removeItem('cart');
+        loadCart();
+      }
+    }
+
+    function proceedToPayment() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (cart.length === 0) {
+        alert('Your cart is empty! Add some beautiful jewellery first.');
+        return;
+      }
+      window.location.href = 'payment.html';
+    }
+
+    function applyCoupon() {
+      const code = document.getElementById('couponInput').value.trim().toUpperCase();
+      if (code === 'CREATIVE10') {
+        alert('Coupon applied! 10% discount — coming soon in the next version.');
+      } else if (code) {
+        alert('Invalid coupon code. Please try again.');
+      }
+    }
+
+    // Load on page ready
+    loadCart();
+  </script>
 </body>
 </html>

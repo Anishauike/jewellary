@@ -1,328 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAYMENT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body {
-            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            margin: 30px;
-            padding: 0;
-            background: url(images/back.avif)no-repeat center center/cover;;
-            color: black;
-            font-style: oblique;
-        }
-
-        .order-form-container {
-            max-width: 900px;
-            margin: 60px auto;
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .order-form-header {
-            background: linear-gradient(135deg, #333, #555);
-            color: #fff;
-            text-align: center;
-            padding: 20px 10px;
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            
-        }
-        .order-form-header img{
-            width: 10%;
-            overflow: hidden;
-        }
-
-        .order-form-header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-
-        .order-form-header p {
-            font-size: 1rem;
-            margin: 5px 0 0;
-            color: pink;
-        }
-
-        .order-form-container .form-content {
-            padding: 40px;
-        }
-
-        .order-form-container .form-group {
-            margin-bottom: 20px;
-        }
-
-        .order-form-container label {
-
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #444;
-        }
-
-        .order-form-container input,
-        .order-form-container select,
-        .order-form-container textarea {
-            width: 100%;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            font-size: 1rem;
-        }
-
-        .order-form-container button {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #333, #555);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .order-form-container button:hover {
-            background: linear-gradient(135deg, #555, #777);
-        }
-
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-
-        .popup-card {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #fff;
-            padding: 30px 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .popup-card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .popup-card p {
-            margin-bottom: 20px;
-            color: #555;
-        }
-
-        .popup-card button {
-            background: linear-gradient(135deg, #555, #777);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        .popup-card button:hover {
-            background: linear-gradient(135deg, #777, #999);
-        }
-
-        #paymentFormContainer {
-            margin-top: 20px;
-            display: none;
-        }
-
-        #paymentFormContainer h3 {
-            margin-bottom: 10px;
-        }
-       
-        @media (max-width: 768px) {
-    .order-form-container {
-        width: 90%; /* Make the form take up 90% of the screen width */
-        margin: 20px auto; /* Adjust margin for better spacing */
-    }
-
-    .product-image {
-        width: 80px; /* Reduce the product image size */
-        height: 80px;
-    }
-
-    .order-form-header h1 {
-        font-size: 2rem; /* Make the header text smaller */
-    }
-
-    .order-form-header p {
-        font-size: 0.9rem; /* Reduce the subheading font size */
-    }
-
-    .order-form-container input,
-    .order-form-container select,
-    .order-form-container textarea {
-        font-size: 0.9rem; /* Make input text smaller */
-    }
-
-    .order-form-container button {
-        font-size: 1rem; /* Adjust button text size */
-    }
-}
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Creative Jewellery</title>
+  <meta name="description" content="Complete your purchase securely at Creative Jewellery. Fast, free delivery guaranteed.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/payment.css">
 </head>
 <body>
 
-<div class="order-form-container">
-    <div class="order-form-header">
-        <img src="images/logo.jpeg">
-        <h1>Place Your Order</h1>
-       
+  <!-- ── Navbar ───────────────────────────────── -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">Creative <span>Jewellery</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navbar-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="product.html">Products</a>
+      <a href="about-us.html">About Us</a>
+      <a href="contact-us.html">Contact</a>
+      <a href="login.html">Sign In</a>
+      <a href="card.html">Cart</a>
     </div>
-    
-    <div class="form-content">
-        <form id="orderForm">
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-            </div>
-            <div class="form-group">
-                <label for="address">Shipping Address</label>
-                <textarea id="address" name="address" placeholder="Enter your full shipping address" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="watch-model">Select Quantity</label>
-                <select id="watch-model" name="watch_model" required>
-                    <option value="">-- Select --</option>
-                    <option value="model1">1</option>
-                    <option value="model2">2</option>
-                    <option value="model3">3</option>
-                    <option value="model4">4</option>
-                </select>
-            </div>
+  </nav>
 
+  <!-- ── Page Hero ────────────────────────────── -->
+  <section class="payment-hero">
+    <h1>Secure Checkout</h1>
+    <p>Complete your order safely and securely</p>
+    <!-- Progress steps -->
+    <div class="checkout-steps">
+      <span class="step done">1. Cart</span>
+      <span class="step-line"></span>
+      <span class="step active">2. Checkout</span>
+      <span class="step-line"></span>
+      <span class="step">3. Confirmation</span>
+    </div>
+  </section>
+
+  <!-- ── Checkout Content ───────────────────────── -->
+  <section class="checkout-section">
+    <div class="checkout-grid">
+
+      <!-- Order Form -->
+      <div class="order-form-box fade-in-up">
+        <h2>Shipping &amp; Payment</h2>
+        <form id="orderForm" novalidate>
+          <!-- Shipping -->
+          <div class="form-section-title">
+            <span>📦</span> Shipping Details
+          </div>
+          <div class="form-row">
             <div class="form-group">
-                <label for="payment">Payment Method</label>
-                <select id="payment" name="payment_method" required>
-                    <option value="">-- Select Payment Method --</option>
-                    <option value="credit_card">Credit Card</option>
-                    <option value="paypal">PayPal</option>
-                    <option value="bank_transfer">Bank Transfer</option>
-                    <option value="cod">Cash on Delivery</option>
-                </select>
+              <label for="pfname">First Name *</label>
+              <input type="text" id="pfname" placeholder="Rishika" required>
             </div>
-
-            <div id="paymentFormContainer">
-                <div id="creditCardForm" style="display: none;">
-                    <h3>Credit Card Details</h3>
-                    <div class="form-group">
-                        <label for="cc-number">Card Number</label>
-                        <input type="text" id="cc-number" name="cc_number" placeholder="Enter your card number">
-                    </div>
-                    <div class="form-group">
-                        <label for="cc-expiry">Expiry Date</label>
-                        <input type="text" id="cc-expiry" name="cc_expiry" placeholder="MM/YY">
-                    </div>
-                    <div class="form-group">
-                        <label for="cc-cvv">CVV</label>
-                        <input type="text" id="cc-cvv" name="cc_cvv" placeholder="Enter CVV">
-                    </div>
-                </div>
-
-                <div id="paypalForm" style="display: none;">
-                    <h3>PayPal Details</h3>
-                    <div class="form-group">
-                        <label for="paypal-email">PayPal Email</label>
-                        <input type="email" id="paypal-email" name="paypal_email" placeholder="Enter your PayPal email">
-                    </div>
-                </div>
-
-                <div id="bankTransferForm" style="display: none;">
-                    <h3>Bank Transfer Instructions</h3>
-                    <p>Please transfer the amount to the following bank account:</p>
-                    <p>Bank: ABC Bank</p>
-                    <p>Account Number: 1234567890</p>
-                    <p>IFSC Code: ABCD0123456</p>
-                </div>
+            <div class="form-group">
+              <label for="plname">Last Name *</label>
+              <input type="text" id="plname" placeholder="Sharma" required>
             </div>
+          </div>
+          <div class="form-group">
+            <label for="pemail">Email Address *</label>
+            <input type="email" id="pemail" placeholder="rishika@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="pphone">Phone Number *</label>
+            <input type="tel" id="pphone" placeholder="+91 98765 43210" required>
+          </div>
+          <div class="form-group">
+            <label for="paddress">Shipping Address *</label>
+            <textarea id="paddress" placeholder="Enter your full delivery address..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="pqty">Quantity</label>
+            <select id="pqty">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
 
-            <button type="submit">Place Order</button>
+          <!-- Payment Method -->
+          <div class="form-section-title" style="margin-top:1.75rem;">
+            <span>💳</span> Payment Method
+          </div>
+          <div class="form-group">
+            <label for="paymentMethod">Select Method *</label>
+            <select id="paymentMethod" required>
+              <option value="">-- Choose payment method --</option>
+              <option value="credit_card">Credit / Debit Card</option>
+              <option value="paypal">PayPal</option>
+              <option value="bank_transfer">Bank Transfer</option>
+              <option value="cod">Cash on Delivery</option>
+            </select>
+          </div>
+
+          <!-- Dynamic payment sub-forms -->
+          <div id="creditCardForm" class="payment-sub-form">
+            <div class="form-group">
+              <label for="ccNumber">Card Number</label>
+              <input type="text" id="ccNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="ccExpiry">Expiry Date</label>
+                <input type="text" id="ccExpiry" placeholder="MM/YY" maxlength="5">
+              </div>
+              <div class="form-group">
+                <label for="ccCvv">CVV</label>
+                <input type="text" id="ccCvv" placeholder="123" maxlength="3">
+              </div>
+            </div>
+          </div>
+
+          <div id="paypalForm" class="payment-sub-form">
+            <div class="form-group">
+              <label for="paypalEmail">PayPal Email</label>
+              <input type="email" id="paypalEmail" placeholder="paypal@example.com">
+            </div>
+          </div>
+
+          <div id="bankTransferForm" class="payment-sub-form bank-info">
+            <p><strong>Bank:</strong> Creative Jewellery Bank</p>
+            <p><strong>Account:</strong> 9876543210</p>
+            <p><strong>IFSC:</strong> CJEW0012345</p>
+            <p class="note">Please transfer the exact amount and share a screenshot with us.</p>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; border:none; font-family:'Poppins',sans-serif; font-size:1rem; cursor:pointer; margin-top:1rem;">
+            Place Order →
+          </button>
         </form>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="order-summary-box fade-in-up delay-2">
+        <h2>Order Summary</h2>
+        <div id="summaryItems" class="summary-items">
+          <!-- Populated by JS -->
+        </div>
+        <div class="summary-totals">
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <span id="summarySubtotal">$0.00</span>
+          </div>
+          <div class="summary-line">
+            <span>Shipping</span>
+            <span class="text-gold">Free</span>
+          </div>
+          <div class="summary-line total-line">
+            <span>Total</span>
+            <span id="summaryTotal">$0.00</span>
+          </div>
+        </div>
+        <div class="security-badges">
+          <span>🔒 SSL Secured</span>
+          <span>✅ Money-Back Guarantee</span>
+          <span>🚚 Free Shipping</span>
+        </div>
+      </div>
+
     </div>
-</div>
+  </section>
 
-<div class="popup-overlay" id="popupOverlay">
-    <div class="popup-card">
-        <h2>Order Placed Successfully!</h2>
-        <p>Thank you for your purchase. Your luxury watch will be shipped soon.</p>
-        <button onclick="closePopup()">Close</button>
+  <!-- ── Success Popup ──────────────────────────── -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-card fade-in-up">
+      <div class="popup-icon">🎉</div>
+      <h2>Order Placed!</h2>
+      <p>Thank you for shopping with Creative Jewellery. Your beautiful jewellery is on its way!</p>
+      <p class="popup-redirect">Redirecting to home in <span id="countdown">3</span>s...</p>
     </div>
-</div>
+  </div>
 
-<script>
-    const paymentSelect = document.getElementById('payment');
-    const paymentFormContainer = document.getElementById('paymentFormContainer');
-    const creditCardForm = document.getElementById('creditCardForm');
-    const paypalForm = document.getElementById('paypalForm');
-    const bankTransferForm = document.getElementById('bankTransferForm');
-    const orderForm = document.getElementById('orderForm');
-    const popupOverlay = document.getElementById('popupOverlay');
+  <!-- ── Footer ────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Creative <span>Jewellery</span></h3>
+        <p>Crafting exquisite jewellery that celebrates individuality and elegance. Handmade with love since 1954.</p>
+        <div class="social-links" style="margin-top:1.25rem;">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="Pinterest">📌</a>
+          <a href="#" aria-label="Twitter">🐦</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="contact-us.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📍 Mumbai, India</p>
+        <p>📞 +91 98765 43210</p>
+        <p>✉️ hello@creativejewellery.in</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Creative Jewellery. All Rights Reserved. Made with ♥ in India.</p>
+    </div>
+  </footer>
 
-    paymentSelect.addEventListener('change', function () {
-        creditCardForm.style.display = 'none';
-        paypalForm.style.display = 'none';
-        bankTransferForm.style.display = 'none';
-        paymentFormContainer.style.display = 'block';
+  <script>
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
 
-        const selectedPayment = paymentSelect.value;
-        if (selectedPayment === 'credit_card') {
-            creditCardForm.style.display = 'block';
-        } else if (selectedPayment === 'paypal') {
-            paypalForm.style.display = 'block';
-        } else if (selectedPayment === 'bank_transfer') {
-            bankTransferForm.style.display = 'block';
-        } else {
-            paymentFormContainer.style.display = 'none';
-        }
-    });
-
-    orderForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        popupOverlay.style.display = 'block';
-    });
-
-    function closePopup() {
-        popupOverlay.style.display = 'none';
+    // ── Load cart summary ───────────────────────
+    function loadSummary() {
+      const cart    = JSON.parse(localStorage.getItem('cart')) || [];
+      const wrap    = document.getElementById('summaryItems');
+      let total = 0;
+      if (cart.length === 0) {
+        wrap.innerHTML = '<p style="color:#aaa;font-size:.9rem;">Your cart is empty.</p>';
+      } else {
+        wrap.innerHTML = cart.map(i => {
+          total += parseFloat(i.price);
+          return `<div class="summary-item"><span>💎 ${i.name}</span><span>$${parseFloat(i.price).toFixed(2)}</span></div>`;
+        }).join('');
+      }
+      document.getElementById('summarySubtotal').textContent = `$${total.toFixed(2)}`;
+      document.getElementById('summaryTotal').textContent    = `$${total.toFixed(2)}`;
     }
-</script>
-<script>
-    orderForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    popupOverlay.style.display = 'block';
-    setTimeout(() => {
-        window.location.href = 'index.html'; 
-    }, 3000);
-});
-</script>
+    loadSummary();
+
+    // ── Payment sub-form toggle ──────────────────
+    const paymentSelect   = document.getElementById('paymentMethod');
+    const creditCardForm  = document.getElementById('creditCardForm');
+    const paypalForm      = document.getElementById('paypalForm');
+    const bankTransferForm = document.getElementById('bankTransferForm');
+
+    paymentSelect.addEventListener('change', function() {
+      creditCardForm.style.display   = 'none';
+      paypalForm.style.display       = 'none';
+      bankTransferForm.style.display = 'none';
+      if (this.value === 'credit_card') creditCardForm.style.display = 'block';
+      else if (this.value === 'paypal') paypalForm.style.display     = 'block';
+      else if (this.value === 'bank_transfer') bankTransferForm.style.display = 'block';
+    });
+
+    // ── Form submit ──────────────────────────────
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fname   = document.getElementById('pfname').value.trim();
+      const email   = document.getElementById('pemail').value.trim();
+      const phone   = document.getElementById('pphone').value.trim();
+      const address = document.getElementById('paddress').value.trim();
+      const payment = document.getElementById('paymentMethod').value;
+
+      if (!fname || !email || !phone || !address || !payment) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      // Show popup
+      document.getElementById('popupOverlay').style.display = 'flex';
+      localStorage.removeItem('cart');
+
+      // Countdown
+      let count = 3;
+      const timer = setInterval(() => {
+        count--;
+        document.getElementById('countdown').textContent = count;
+        if (count <= 0) {
+          clearInterval(timer);
+          window.location.href = 'index.html';
+        }
+      }, 1000);
+    });
+  </script>
 </body>
 </html>

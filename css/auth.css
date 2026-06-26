@@ -1,0 +1,157 @@
+/* ── Auth Page (Login / Sign Up) Styles ── */
+
+/* ─── Page Layout ───────────────────────────────── */
+.auth-page {
+  min-height: 100vh;
+  background: var(--light-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.back-home {
+  position: fixed;
+  top: 1.25rem;
+  left: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition);
+  z-index: 100;
+}
+
+.back-home:hover {
+  color: var(--gold);
+}
+
+/* ─── Auth Container ────────────────────────────── */
+.auth-container {
+  width: 100%;
+  max-width: 860px;
+}
+
+.hidden { display: none !important; }
+
+/* ─── Auth Panel ────────────────────────────────── */
+.auth-panel {
+  display: flex;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  min-height: 540px;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Gold Accent Side */
+.auth-accent {
+  width: 40%;
+  background: linear-gradient(160deg, var(--gold-dark), var(--gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  flex-shrink: 0;
+}
+
+.auth-accent-content {
+  text-align: center;
+  color: var(--black);
+}
+
+.auth-accent-content h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--black);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.auth-accent-content p {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  color: rgba(0,0,0,0.7);
+}
+
+.auth-accent-content .btn-outline {
+  border-color: var(--black);
+  color: var(--black);
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+}
+
+.auth-accent-content .btn-outline:hover {
+  background-color: var(--black);
+  color: var(--gold);
+}
+
+/* Form Side */
+.auth-form-wrap {
+  flex: 1;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+}
+
+.auth-form-inner {
+  width: 100%;
+  max-width: 340px;
+}
+
+.auth-form-inner h1 {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.form-hint {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 2rem;
+}
+
+.auth-submit {
+  width: 100%;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.auth-switch {
+  font-size: 0.85rem;
+  color: #777;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.auth-switch a {
+  color: var(--gold);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.auth-switch a:hover {
+  color: var(--gold-dark);
+  text-decoration: underline;
+}
+
+/* ─── Responsive ────────────────────────────────── */
+@media (max-width: 640px) {
+  .auth-panel {
+    flex-direction: column;
+  }
+  .auth-accent {
+    width: 100%;
+    padding: 2rem;
+  }
+  .auth-accent-content h2 {
+    font-size: 1.5rem;
+  }
+}
