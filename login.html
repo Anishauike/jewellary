@@ -19,6 +19,7 @@
     <div class="auth-panel" id="loginPanel">
       <div class="auth-accent">
         <div class="auth-accent-content">
+          <div class="auth-accent-logo">💎</div>
           <h2>Welcome<br>Back!</h2>
           <p>Sign in to continue your luxury jewellery journey with us.</p>
           <button class="btn btn-outline" id="showSignupBtn">Create Account</button>
@@ -31,13 +32,16 @@
           <form id="loginForm" novalidate>
             <div class="form-group">
               <label for="loginEmail">Email Address</label>
-              <input type="email" id="loginEmail" placeholder="you@example.com" required>
+              <input type="email" id="loginEmail" placeholder="you@example.com" required autocomplete="email">
             </div>
             <div class="form-group">
               <label for="loginPassword">Password</label>
-              <input type="password" id="loginPassword" placeholder="Your password" required>
+              <div class="password-wrap">
+                <input type="password" id="loginPassword" placeholder="Your password" required autocomplete="current-password">
+                <button type="button" class="toggle-pw" data-target="loginPassword" aria-label="Show password">👁</button>
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary auth-submit">Sign In</button>
+            <button type="submit" class="btn btn-primary auth-submit" id="loginSubmitBtn">Sign In</button>
           </form>
           <p class="auth-switch">Don't have an account? <a href="#" id="showSignupLink">Create one</a></p>
         </div>
@@ -53,25 +57,36 @@
           <form id="signupForm" novalidate>
             <div class="form-group">
               <label for="signupName">Full Name</label>
-              <input type="text" id="signupName" placeholder="Rishika Sharma" required>
+              <input type="text" id="signupName" placeholder="Rishika Sharma" required autocomplete="name">
             </div>
             <div class="form-group">
               <label for="signupEmail">Email Address</label>
-              <input type="email" id="signupEmail" placeholder="you@example.com" required>
+              <input type="email" id="signupEmail" placeholder="you@example.com" required autocomplete="email">
             </div>
             <div class="form-group">
-              <label for="signupPassword">Password</label>
-              <input type="password" id="signupPassword" placeholder="Create a password (min. 6 chars)" required>
+              <label for="signupPassword">Password <span class="hint-small">(min. 8 characters)</span></label>
+              <div class="password-wrap">
+                <input type="password" id="signupPassword" placeholder="Create a strong password" required autocomplete="new-password">
+                <button type="button" class="toggle-pw" data-target="signupPassword" aria-label="Show password">👁</button>
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary auth-submit">Create Account</button>
+            <div class="form-group">
+              <label for="signupConfirm">Confirm Password</label>
+              <div class="password-wrap">
+                <input type="password" id="signupConfirm" placeholder="Repeat your password" required autocomplete="new-password">
+                <button type="button" class="toggle-pw" data-target="signupConfirm" aria-label="Show password">👁</button>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary auth-submit" id="signupSubmitBtn">Create Account</button>
           </form>
           <p class="auth-switch">Already have an account? <a href="#" id="showLoginLink">Sign in</a></p>
         </div>
       </div>
       <div class="auth-accent">
         <div class="auth-accent-content">
+          <div class="auth-accent-logo">✨</div>
           <h2>Let's Get<br>Started!</h2>
-          <p>Create your account and begin your journey with us.</p>
+          <p>Create your account and begin your jewellery journey with us.</p>
           <button class="btn btn-outline" id="showLoginBtn">Sign In</button>
         </div>
       </div>
@@ -79,62 +94,57 @@
 
   </div>
 
+  <!-- Scripts: storage first, then main, then auth -->
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
   <script>
-    // Panel toggle helpers
-    const loginPanel  = document.getElementById('loginPanel');
-    const signupPanel = document.getElementById('signupPanel');
+    /* ── Redirect if already logged in ── */
+    if (Storage.isLoggedIn()) {
+      window.location.href = 'index.html';
+    }
 
+    /* ── URL param: open signup tab directly ── */
+    if (new URLSearchParams(location.search).get('tab') === 'signup') {
+      document.getElementById('loginPanel').classList.add('hidden');
+      document.getElementById('signupPanel').classList.remove('hidden');
+    }
+
+    /* ── Panel toggle ── */
     function showSignup() {
-      loginPanel.classList.add('hidden');
-      signupPanel.classList.remove('hidden');
+      document.getElementById('loginPanel').classList.add('hidden');
+      document.getElementById('signupPanel').classList.remove('hidden');
     }
     function showLogin() {
-      signupPanel.classList.add('hidden');
-      loginPanel.classList.remove('hidden');
+      document.getElementById('signupPanel').classList.add('hidden');
+      document.getElementById('loginPanel').classList.remove('hidden');
     }
+
+    // Make showSignup available globally (auth.js uses it for "account not found" flow)
+    window.showSignup = showSignup;
 
     document.getElementById('showSignupBtn').addEventListener('click', showSignup);
     document.getElementById('showSignupLink').addEventListener('click', function(e) { e.preventDefault(); showSignup(); });
     document.getElementById('showLoginBtn').addEventListener('click', showLogin);
     document.getElementById('showLoginLink').addEventListener('click', function(e) { e.preventDefault(); showLogin(); });
 
-    // Signup form
-    document.getElementById('signupForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name     = document.getElementById('signupName').value.trim();
-      const email    = document.getElementById('signupEmail').value.trim();
-      const password = document.getElementById('signupPassword').value;
-
-      if (!name || !email || !password) {
-        alert('Please fill in all fields.');
-        return;
-      }
-      if (password.length < 6) {
-        alert('Password must be at least 6 characters.');
-        return;
-      }
-      localStorage.setItem('cj_user', JSON.stringify({ name, email, password }));
-      alert('Account created successfully! Welcome to Creative Jewellery.');
-      window.location.href = 'index.html';
+    /* ── Password visibility toggle ── */
+    document.querySelectorAll('.toggle-pw').forEach(function(btn) {
+      btn.addEventListener('click', function () {
+        var target = document.getElementById(this.dataset.target);
+        if (!target) return;
+        target.type = target.type === 'password' ? 'text' : 'password';
+        this.textContent = target.type === 'password' ? '👁' : '🙈';
+      });
     });
 
-    // Login form
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email    = document.getElementById('loginEmail').value.trim();
-      const password = document.getElementById('loginPassword').value;
-
-      if (!email || !password) {
-        alert('Please enter your email and password.');
-        return;
-      }
-      const user = JSON.parse(localStorage.getItem('cj_user'));
-      if (!user || user.email !== email || user.password !== password) {
-        alert('Invalid credentials. Please check your email and password, or create an account.');
-        return;
-      }
-      alert(`Welcome back, ${user.name}!`);
-      window.location.href = 'index.html';
+    /* ── Clear errors on input ── */
+    document.querySelectorAll('input').forEach(function(input) {
+      input.addEventListener('input', function () {
+        this.classList.remove('input-error');
+        var err = this.parentElement.querySelector('.field-error');
+        if (err) err.textContent = '';
+      });
     });
   </script>
 </body>

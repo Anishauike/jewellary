@@ -21,8 +21,7 @@
       <a href="product.html">Products</a>
       <a href="about-us.html">About Us</a>
       <a href="contact-us.html">Contact</a>
-      <a href="login.html">Sign In</a>
-      <a href="card.html" class="active">Cart</a>
+      <!-- Auth links injected by main.js -->
     </div>
   </nav>
 
@@ -36,35 +35,46 @@
   <section class="cart-section">
     <div class="cart-wrapper">
 
-      <!-- Cart Items Table -->
+      <!-- Cart Items -->
       <div class="cart-table-wrap fade-in-up">
         <div class="cart-table-header">
           <span>Product</span>
+          <span>Quantity</span>
           <span>Price</span>
+          <span>Subtotal</span>
           <span>Action</span>
         </div>
         <div id="cartItems" class="cart-items-list">
           <!-- Populated by JS -->
         </div>
+
+        <!-- Empty State -->
         <div class="cart-empty" id="emptyMsg" style="display:none;">
-          <p>🛒 Your cart is empty.</p>
-          <a href="product.html" class="btn btn-primary" style="margin-top:1rem;">Start Shopping</a>
+          <div class="cart-empty-icon">🛒</div>
+          <h3>Your cart is empty</h3>
+          <p>Looks like you haven't added anything yet.</p>
+          <a href="product.html" class="btn btn-primary" style="margin-top:1.5rem;">Continue Shopping</a>
         </div>
       </div>
 
       <!-- Cart Summary -->
-      <div class="cart-summary-box fade-in-up delay-2">
+      <div class="cart-summary-box fade-in-up delay-2" id="cartSummaryBox">
         <h2>Order Summary</h2>
 
         <div class="coupon-row">
-          <input type="text" id="couponInput" placeholder="Coupon code">
-          <button class="btn btn-outline" onclick="applyCoupon()" style="border-radius:8px; font-family:'Poppins',sans-serif; cursor:pointer; white-space:nowrap;">Apply</button>
+          <input type="text" id="couponInput" placeholder="Coupon code (JEWEL10)">
+          <button class="btn btn-outline" id="applyCouponBtn" style="border-radius:8px;font-family:'Poppins',sans-serif;cursor:pointer;white-space:nowrap;">Apply</button>
         </div>
+        <div id="couponMsg" class="coupon-msg"></div>
 
         <div class="summary-lines">
           <div class="summary-line">
             <span>Subtotal</span>
             <span id="subtotalDisplay">$0.00</span>
+          </div>
+          <div class="summary-line" id="discountRow" style="display:none;">
+            <span>Discount (10%)</span>
+            <span id="discountDisplay" class="text-gold">-$0.00</span>
           </div>
           <div class="summary-line">
             <span>Shipping</span>
@@ -76,9 +86,8 @@
           </div>
         </div>
 
-        <button class="btn btn-primary checkout-btn" onclick="proceedToPayment()">Proceed to Checkout</button>
-        <button class="btn btn-outline clear-btn" onclick="clearCart()">Clear Cart</button>
-
+        <button class="btn btn-primary checkout-btn" id="checkoutBtn">Proceed to Checkout →</button>
+        <button class="btn btn-outline clear-btn" id="clearCartBtn">Clear Cart</button>
         <a href="product.html" class="continue-link">← Continue Shopping</a>
       </div>
 
@@ -127,82 +136,139 @@
     </div>
   </footer>
 
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
   <script>
-    // Hamburger
-    const hamburger = document.getElementById('hamburger');
-    const navLinks  = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    let couponApplied = false;
 
-    // ── Cart Functions ──────────────────────────
-    function loadCart() {
-      const cart      = JSON.parse(localStorage.getItem('cart')) || [];
+    function renderCart() {
+      const user      = Storage.getCurrentUser();
       const container = document.getElementById('cartItems');
       const emptyMsg  = document.getElementById('emptyMsg');
+      const summaryBox= document.getElementById('cartSummaryBox');
 
+      if (!user) {
+        container.innerHTML = '';
+        emptyMsg.style.display = 'flex';
+        summaryBox.style.display = 'none';
+        showAuthPopup();
+        return;
+      }
+
+      const cart = Storage.getCart(user.email);
       container.innerHTML = '';
 
       if (cart.length === 0) {
-        emptyMsg.style.display = 'block';
-        updateTotal(0);
+        emptyMsg.style.display = 'flex';
+        summaryBox.style.display = 'none';
+        setTotals(0);
         return;
       }
-      emptyMsg.style.display = 'none';
 
-      let total = 0;
-      cart.forEach((item, index) => {
-        const price = parseFloat(item.price);
-        total += price;
+      emptyMsg.style.display = 'none';
+      summaryBox.style.display = 'block';
+
+      let subtotal = 0;
+
+      cart.forEach(item => {
+        const qty = item.quantity || 1;
+        const sub = item.price * qty;
+        subtotal += sub;
+
         const row = document.createElement('div');
         row.className = 'cart-item';
         row.innerHTML = `
-          <span class="item-name">💎 ${item.name}</span>
-          <span class="item-price">$${price.toFixed(2)}</span>
-          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+          <div class="cart-item-product">
+            <div class="cart-item-img-wrap">
+              <img src="${item.image}" alt="${item.name}" class="cart-item-img" onerror="this.src='images/necklace 1.jpeg'">
+            </div>
+            <span class="cart-item-name">${item.name}</span>
+          </div>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="changeQty('${item.id}', -1)" aria-label="Decrease quantity">−</button>
+            <span class="qty-num">${qty}</span>
+            <button class="qty-btn" onclick="changeQty('${item.id}', 1)" aria-label="Increase quantity">+</button>
+          </div>
+          <span class="cart-item-price">$${item.price.toFixed(2)}</span>
+          <span class="cart-item-subtotal">$${sub.toFixed(2)}</span>
+          <button class="remove-btn" onclick="doRemove('${item.id}')" aria-label="Remove item">🗑 Remove</button>
         `;
         container.appendChild(row);
       });
-      updateTotal(total);
+
+      setTotals(subtotal);
     }
 
-    function updateTotal(amount) {
-      document.getElementById('subtotalDisplay').textContent = `$${amount.toFixed(2)}`;
-      document.getElementById('totalDisplay').textContent    = `$${amount.toFixed(2)}`;
-    }
+    function setTotals(subtotal) {
+      const discount = couponApplied ? subtotal * 0.1 : 0;
+      const total    = subtotal - discount;
 
-    function removeItem(index) {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      loadCart();
-    }
+      document.getElementById('subtotalDisplay').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('totalDisplay').textContent    = `$${total.toFixed(2)}`;
 
-    function clearCart() {
-      if (confirm('Are you sure you want to clear your cart?')) {
-        localStorage.removeItem('cart');
-        loadCart();
+      const discountRow = document.getElementById('discountRow');
+      const discountEl  = document.getElementById('discountDisplay');
+      if (couponApplied && subtotal > 0) {
+        discountRow.style.display = 'flex';
+        discountEl.textContent    = `-$${discount.toFixed(2)}`;
+      } else {
+        discountRow.style.display = 'none';
       }
     }
 
-    function proceedToPayment() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      if (cart.length === 0) {
-        alert('Your cart is empty! Add some beautiful jewellery first.');
-        return;
+    function changeQty(productId, delta) {
+      CART.updateCartQuantity(productId, delta);
+      renderCart();
+    }
+
+    function doRemove(productId) {
+      CART.removeFromCart(productId);
+      renderCart();
+      showToast('🗑 Item removed from cart.', 'error');
+    }
+
+    document.getElementById('clearCartBtn').addEventListener('click', () => {
+      const cart = Storage.getCurrentUser() ? Storage.getCart(Storage.getCurrentUser().email) : [];
+      if (cart.length === 0) return;
+      if (confirm('Clear your entire cart?')) {
+        CART.clearUserCart();
+        couponApplied = false;
+        renderCart();
+        showToast('🗑 Cart cleared.', 'error');
       }
+    });
+
+    document.getElementById('checkoutBtn').addEventListener('click', () => {
+      const user = Storage.getCurrentUser();
+      if (!user) { showAuthPopup(); return; }
+      const cart = Storage.getCart(user.email);
+      if (cart.length === 0) { showToast('❌ Your cart is empty!', 'error'); return; }
       window.location.href = 'payment.html';
-    }
+    });
 
-    function applyCoupon() {
-      const code = document.getElementById('couponInput').value.trim().toUpperCase();
-      if (code === 'CREATIVE10') {
-        alert('Coupon applied! 10% discount — coming soon in the next version.');
-      } else if (code) {
-        alert('Invalid coupon code. Please try again.');
+    document.getElementById('applyCouponBtn').addEventListener('click', () => {
+      const code    = document.getElementById('couponInput').value.trim().toUpperCase();
+      const msgEl   = document.getElementById('couponMsg');
+      if (code === 'JEWEL10') {
+        couponApplied = true;
+        msgEl.textContent   = '✅ Coupon applied! 10% discount.';
+        msgEl.className     = 'coupon-msg success';
+        renderCart();
+      } else if (code === '') {
+        msgEl.textContent = '❌ Please enter a coupon code.';
+        msgEl.className   = 'coupon-msg error';
+      } else {
+        msgEl.textContent = '❌ Invalid coupon code.';
+        msgEl.className   = 'coupon-msg error';
       }
-    }
+    });
 
-    // Load on page ready
-    loadCart();
+    // Re-render when cart is updated externally
+    document.addEventListener('cartUpdated', renderCart);
+
+    // Initial render
+    renderCart();
   </script>
 </body>
 </html>

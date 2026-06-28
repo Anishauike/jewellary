@@ -21,8 +21,7 @@
       <a href="product.html" class="active">Products</a>
       <a href="about-us.html">About Us</a>
       <a href="contact-us.html">Contact</a>
-      <a href="login.html">Sign In</a>
-      <a href="card.html">Cart</a>
+      <!-- Auth links injected by main.js -->
     </div>
   </nav>
 
@@ -46,6 +45,7 @@
       <div class="divider"></div>
     </div>
     <div class="product-grid">
+
       <div class="product-card fade-in-up delay-1">
         <div class="card-img-wrap">
           <img src="images/necklace 1.jpeg" alt="Butterfly Pendant Necklace">
@@ -54,9 +54,14 @@
           <h3>Butterfly Pendant</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$100</span>
-          <button onclick="addToCart('Butterfly Pendant', 100)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="butterfly-pendant"
+            data-product-name="Butterfly Pendant"
+            data-product-image="images/necklace 1.jpeg"
+            data-product-price="100">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up delay-2">
         <div class="card-img-wrap">
           <img src="images/necklace 2.jpeg" alt="Floral Necklace">
@@ -65,9 +70,14 @@
           <h3>Floral Necklace</h3>
           <p>Elegant and timeless design</p>
           <span class="price">$150</span>
-          <button onclick="addToCart('Floral Necklace', 150)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="floral-necklace"
+            data-product-name="Floral Necklace"
+            data-product-image="images/necklace 2.jpeg"
+            data-product-price="150">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up delay-3">
         <div class="card-img-wrap">
           <img src="images/necklace 3.jpeg" alt="Pearl Necklace">
@@ -76,9 +86,14 @@
           <h3>Pearl Strand Necklace</h3>
           <p>Perfect for every occasion</p>
           <span class="price">$250</span>
-          <button onclick="addToCart('Pearl Strand Necklace', 250)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="pearl-strand-necklace"
+            data-product-name="Pearl Strand Necklace"
+            data-product-image="images/necklace 3.jpeg"
+            data-product-price="250">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up" style="animation-delay:0.6s">
         <div class="card-img-wrap">
           <img src="images/necklace 4.jpeg" alt="Diamond Necklace">
@@ -87,9 +102,30 @@
           <h3>Diamond Accent Necklace</h3>
           <p>Perfect for every occasion</p>
           <span class="price">$300</span>
-          <button onclick="addToCart('Diamond Accent Necklace', 300)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="diamond-accent-necklace"
+            data-product-name="Diamond Accent Necklace"
+            data-product-image="images/necklace 4.jpeg"
+            data-product-price="300">Add to Cart</button>
         </div>
       </div>
+
+      <div class="product-card fade-in-up" style="animation-delay:0.75s">
+        <div class="card-img-wrap">
+          <img src="images/necklace.jpeg" alt="Golden Grace Necklace">
+        </div>
+        <div class="card-body">
+          <h3>Golden Grace Necklace</h3>
+          <p>Exquisite craftsmanship</p>
+          <span class="price">$350</span>
+          <button class="add-to-cart-btn"
+            data-product-id="golden-grace-necklace"
+            data-product-name="Golden Grace Necklace"
+            data-product-image="images/necklace.jpeg"
+            data-product-price="350">Add to Cart</button>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -100,6 +136,7 @@
       <div class="divider"></div>
     </div>
     <div class="product-grid">
+
       <div class="product-card fade-in-up delay-1">
         <div class="card-img-wrap">
           <img src="images/ring1.jpeg" alt="Gold Solitaire Ring">
@@ -108,9 +145,14 @@
           <h3>Gold Solitaire Ring</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$360</span>
-          <button onclick="addToCart('Gold Solitaire Ring', 360)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="gold-solitaire-ring"
+            data-product-name="Gold Solitaire Ring"
+            data-product-image="images/ring1.jpeg"
+            data-product-price="360">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up delay-2">
         <div class="card-img-wrap">
           <img src="images/ring2.jpeg" alt="Twisted Band Ring">
@@ -119,9 +161,14 @@
           <h3>Twisted Band Ring</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$250</span>
-          <button onclick="addToCart('Twisted Band Ring', 250)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="twisted-band-ring"
+            data-product-name="Twisted Band Ring"
+            data-product-image="images/ring2.jpeg"
+            data-product-price="250">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up delay-3">
         <div class="card-img-wrap">
           <img src="images/ring3.jpeg" alt="Floral Ring">
@@ -130,9 +177,14 @@
           <h3>Floral Ring</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$300</span>
-          <button onclick="addToCart('Floral Ring', 300)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="floral-ring"
+            data-product-name="Floral Ring"
+            data-product-image="images/ring3.jpeg"
+            data-product-price="300">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up" style="animation-delay:0.6s">
         <div class="card-img-wrap">
           <img src="images/ringnew.jpeg" alt="Statement Ring">
@@ -141,9 +193,14 @@
           <h3>Statement Ring</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$260</span>
-          <button onclick="addToCart('Statement Ring', 260)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="statement-ring"
+            data-product-name="Statement Ring"
+            data-product-image="images/ringnew.jpeg"
+            data-product-price="260">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up" style="animation-delay:0.75s">
         <div class="card-img-wrap">
           <img src="images/ring5.jpeg" alt="Gemstone Ring">
@@ -152,9 +209,14 @@
           <h3>Gemstone Ring</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$440</span>
-          <button onclick="addToCart('Gemstone Ring', 440)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="gemstone-ring"
+            data-product-name="Gemstone Ring"
+            data-product-image="images/ring5.jpeg"
+            data-product-price="440">Add to Cart</button>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -165,6 +227,7 @@
       <div class="divider"></div>
     </div>
     <div class="product-grid">
+
       <div class="product-card fade-in-up delay-1">
         <div class="card-img-wrap">
           <img src="images/braclet1.jpeg" alt="Delicate Gold Bracelet">
@@ -173,9 +236,14 @@
           <h3>Delicate Gold Bracelet</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$200</span>
-          <button onclick="addToCart('Delicate Gold Bracelet', 200)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="delicate-gold-bracelet"
+            data-product-name="Delicate Gold Bracelet"
+            data-product-image="images/braclet1.jpeg"
+            data-product-price="200">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up delay-2">
         <div class="card-img-wrap">
           <img src="images/braclet2.jpeg" alt="Charm Bracelet">
@@ -184,9 +252,14 @@
           <h3>Charm Bracelet</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$100</span>
-          <button onclick="addToCart('Charm Bracelet', 100)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="charm-bracelet"
+            data-product-name="Charm Bracelet"
+            data-product-image="images/braclet2.jpeg"
+            data-product-price="100">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up delay-3">
         <div class="card-img-wrap">
           <img src="images/braclet3.jpeg" alt="Beaded Bracelet">
@@ -195,9 +268,14 @@
           <h3>Beaded Bracelet</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$100</span>
-          <button onclick="addToCart('Beaded Bracelet', 100)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="beaded-bracelet"
+            data-product-name="Beaded Bracelet"
+            data-product-image="images/braclet3.jpeg"
+            data-product-price="100">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up" style="animation-delay:0.6s">
         <div class="card-img-wrap">
           <img src="images/braclet4.jpeg" alt="Diamond Bracelet">
@@ -206,9 +284,14 @@
           <h3>Diamond Tennis Bracelet</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$300</span>
-          <button onclick="addToCart('Diamond Tennis Bracelet', 300)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="diamond-tennis-bracelet"
+            data-product-name="Diamond Tennis Bracelet"
+            data-product-image="images/braclet4.jpeg"
+            data-product-price="300">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up" style="animation-delay:0.75s">
         <div class="card-img-wrap">
           <img src="images/braclet5.jpeg" alt="Bangle Bracelet">
@@ -217,9 +300,14 @@
           <h3>Bangle Bracelet</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$450</span>
-          <button onclick="addToCart('Bangle Bracelet', 450)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="bangle-bracelet"
+            data-product-name="Bangle Bracelet"
+            data-product-image="images/braclet5.jpeg"
+            data-product-price="450">Add to Cart</button>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -230,6 +318,7 @@
       <div class="divider"></div>
     </div>
     <div class="product-grid">
+
       <div class="product-card fade-in-up delay-1">
         <div class="card-img-wrap">
           <img src="images/earring1.jpeg" alt="Pearl Drop Earrings">
@@ -238,9 +327,14 @@
           <h3>Pearl Drop Earrings</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$360</span>
-          <button onclick="addToCart('Pearl Drop Earrings', 360)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="pearl-drop-earrings"
+            data-product-name="Pearl Drop Earrings"
+            data-product-image="images/earring1.jpeg"
+            data-product-price="360">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up delay-2">
         <div class="card-img-wrap">
           <img src="images/earring2.jpeg" alt="Hoop Earrings">
@@ -249,9 +343,14 @@
           <h3>Gold Hoop Earrings</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$380</span>
-          <button onclick="addToCart('Gold Hoop Earrings', 380)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="gold-hoop-earrings"
+            data-product-name="Gold Hoop Earrings"
+            data-product-image="images/earring2.jpeg"
+            data-product-price="380">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up delay-3">
         <div class="card-img-wrap">
           <img src="images/earring3.jpeg" alt="Chandelier Earrings">
@@ -260,9 +359,14 @@
           <h3>Chandelier Earrings</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$470</span>
-          <button onclick="addToCart('Chandelier Earrings', 470)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="chandelier-earrings"
+            data-product-name="Chandelier Earrings"
+            data-product-image="images/earring3.jpeg"
+            data-product-price="470">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up" style="animation-delay:0.6s">
         <div class="card-img-wrap">
           <img src="images/earring new.jpeg" alt="Crystal Stud Earrings">
@@ -271,9 +375,14 @@
           <h3>Crystal Stud Earrings</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$240</span>
-          <button onclick="addToCart('Crystal Stud Earrings', 240)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="crystal-stud-earrings"
+            data-product-name="Crystal Stud Earrings"
+            data-product-image="images/earring new.jpeg"
+            data-product-price="240">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up" style="animation-delay:0.75s">
         <div class="card-img-wrap">
           <img src="images/earring5.jpeg" alt="Tassel Earrings">
@@ -282,9 +391,14 @@
           <h3>Tassel Earrings</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$300</span>
-          <button onclick="addToCart('Tassel Earrings', 300)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="tassel-earrings"
+            data-product-name="Tassel Earrings"
+            data-product-image="images/earring5.jpeg"
+            data-product-price="300">Add to Cart</button>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -295,6 +409,7 @@
       <div class="divider"></div>
     </div>
     <div class="product-grid">
+
       <div class="product-card fade-in-up delay-1">
         <div class="card-img-wrap">
           <img src="images/hairclip1.jpeg" alt="Pearl Hair Clip">
@@ -303,9 +418,14 @@
           <h3>Pearl Hair Clip</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$400</span>
-          <button onclick="addToCart('Pearl Hair Clip', 400)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="pearl-hair-clip"
+            data-product-name="Pearl Hair Clip"
+            data-product-image="images/hairclip1.jpeg"
+            data-product-price="400">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up delay-2">
         <div class="card-img-wrap">
           <img src="images/hairclip2.jpeg" alt="Floral Hair Clip">
@@ -314,9 +434,14 @@
           <h3>Floral Hair Clip</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$300</span>
-          <button onclick="addToCart('Floral Hair Clip', 300)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="floral-hair-clip"
+            data-product-name="Floral Hair Clip"
+            data-product-image="images/hairclip2.jpeg"
+            data-product-price="300">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up delay-3">
         <div class="card-img-wrap">
           <img src="images/hsirclipnew.jpeg" alt="Crystal Hair Clip">
@@ -325,9 +450,14 @@
           <h3>Crystal Hair Clip</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$350</span>
-          <button onclick="addToCart('Crystal Hair Clip', 350)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="crystal-hair-clip"
+            data-product-name="Crystal Hair Clip"
+            data-product-image="images/hsirclipnew.jpeg"
+            data-product-price="350">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up" style="animation-delay:0.6s">
         <div class="card-img-wrap">
           <img src="images/hairclip4.jpeg" alt="Vintage Hair Clip">
@@ -336,9 +466,14 @@
           <h3>Vintage Hair Clip</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$370</span>
-          <button onclick="addToCart('Vintage Hair Clip', 370)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="vintage-hair-clip"
+            data-product-name="Vintage Hair Clip"
+            data-product-image="images/hairclip4.jpeg"
+            data-product-price="370">Add to Cart</button>
         </div>
       </div>
+
       <div class="product-card fade-in-up" style="animation-delay:0.75s">
         <div class="card-img-wrap">
           <img src="images/hairclip5.jpeg" alt="Gold Hair Clip">
@@ -347,9 +482,14 @@
           <h3>Gold Hair Clip</h3>
           <p>Beautiful handcrafted jewelry</p>
           <span class="price">$280</span>
-          <button onclick="addToCart('Gold Hair Clip', 280)">Add to Cart</button>
+          <button class="add-to-cart-btn"
+            data-product-id="gold-hair-clip"
+            data-product-name="Gold Hair Clip"
+            data-product-image="images/hairclip5.jpeg"
+            data-product-price="280">Add to Cart</button>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -397,21 +537,8 @@
     </div>
   </footer>
 
-  <script>
-    // Hamburger menu
-    const hamburger = document.getElementById('hamburger');
-    const navLinks  = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
-
-    // Add to cart
-    function addToCart(name, price) {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push({ name, price });
-      localStorage.setItem('cart', JSON.stringify(cart));
-      alert(`${name} has been added to your cart!`);
-    }
-  </script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
 </body>
 </html>

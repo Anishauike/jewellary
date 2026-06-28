@@ -21,8 +21,7 @@
       <a href="product.html">Products</a>
       <a href="about-us.html" class="active">About Us</a>
       <a href="contact-us.html">Contact</a>
-      <a href="login.html">Sign In</a>
-      <a href="card.html">Cart</a>
+      <!-- Auth links injected by main.js -->
     </div>
   </nav>
 
@@ -170,10 +169,7 @@
     </div>
   </footer>
 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinks  = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-  </script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

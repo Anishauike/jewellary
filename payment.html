@@ -21,8 +21,7 @@
       <a href="product.html">Products</a>
       <a href="about-us.html">About Us</a>
       <a href="contact-us.html">Contact</a>
-      <a href="login.html">Sign In</a>
-      <a href="card.html">Cart</a>
+      <!-- Auth links injected by main.js -->
     </div>
   </nav>
 
@@ -30,13 +29,12 @@
   <section class="payment-hero">
     <h1>Secure Checkout</h1>
     <p>Complete your order safely and securely</p>
-    <!-- Progress steps -->
     <div class="checkout-steps">
       <span class="step done">1. Cart</span>
       <span class="step-line"></span>
       <span class="step active">2. Checkout</span>
       <span class="step-line"></span>
-      <span class="step">3. Confirmation</span>
+      <span class="step" id="step3">3. Confirmation</span>
     </div>
   </section>
 
@@ -48,10 +46,9 @@
       <div class="order-form-box fade-in-up">
         <h2>Shipping &amp; Payment</h2>
         <form id="orderForm" novalidate>
-          <!-- Shipping -->
-          <div class="form-section-title">
-            <span>📦</span> Shipping Details
-          </div>
+
+          <!-- Customer Info -->
+          <div class="form-section-title"><span>👤</span> Customer Information</div>
           <div class="form-row">
             <div class="form-group">
               <label for="pfname">First Name *</label>
@@ -70,37 +67,30 @@
             <label for="pphone">Phone Number *</label>
             <input type="tel" id="pphone" placeholder="+91 98765 43210" required>
           </div>
+
+          <!-- Shipping -->
+          <div class="form-section-title" style="margin-top:1.75rem;"><span>📦</span> Shipping Address</div>
           <div class="form-group">
-            <label for="paddress">Shipping Address *</label>
-            <textarea id="paddress" placeholder="Enter your full delivery address..." required></textarea>
-          </div>
-          <div class="form-group">
-            <label for="pqty">Quantity</label>
-            <select id="pqty">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
+            <label for="paddress">Full Delivery Address *</label>
+            <textarea id="paddress" placeholder="Enter your full delivery address including city, state and PIN code..." required></textarea>
           </div>
 
           <!-- Payment Method -->
-          <div class="form-section-title" style="margin-top:1.75rem;">
-            <span>💳</span> Payment Method
-          </div>
+          <div class="form-section-title" style="margin-top:1.75rem;"><span>💳</span> Payment Method</div>
           <div class="form-group">
             <label for="paymentMethod">Select Method *</label>
             <select id="paymentMethod" required>
               <option value="">-- Choose payment method --</option>
-              <option value="credit_card">Credit / Debit Card</option>
-              <option value="paypal">PayPal</option>
-              <option value="bank_transfer">Bank Transfer</option>
-              <option value="cod">Cash on Delivery</option>
+              <option value="credit_card">💳 Credit / Debit Card</option>
+              <option value="paypal">🅿 PayPal</option>
+              <option value="bank_transfer">🏦 Bank Transfer</option>
+              <option value="cod">🚚 Cash on Delivery</option>
             </select>
           </div>
 
-          <!-- Dynamic payment sub-forms -->
-          <div id="creditCardForm" class="payment-sub-form">
+          <!-- Credit Card -->
+          <div id="creditCardForm" class="payment-sub-form" style="display:none;">
+            <div class="demo-badge">🔒 Demo Mode — No real card needed</div>
             <div class="form-group">
               <label for="ccNumber">Card Number</label>
               <input type="text" id="ccNumber" placeholder="1234 5678 9012 3456" maxlength="19">
@@ -117,22 +107,25 @@
             </div>
           </div>
 
-          <div id="paypalForm" class="payment-sub-form">
+          <!-- PayPal -->
+          <div id="paypalForm" class="payment-sub-form" style="display:none;">
+            <div class="demo-badge">🔒 Demo Mode — No real PayPal needed</div>
             <div class="form-group">
               <label for="paypalEmail">PayPal Email</label>
               <input type="email" id="paypalEmail" placeholder="paypal@example.com">
             </div>
           </div>
 
-          <div id="bankTransferForm" class="payment-sub-form bank-info">
+          <!-- Bank Transfer -->
+          <div id="bankTransferForm" class="payment-sub-form bank-info" style="display:none;">
             <p><strong>Bank:</strong> Creative Jewellery Bank</p>
             <p><strong>Account:</strong> 9876543210</p>
             <p><strong>IFSC:</strong> CJEW0012345</p>
             <p class="note">Please transfer the exact amount and share a screenshot with us.</p>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width:100%; border:none; font-family:'Poppins',sans-serif; font-size:1rem; cursor:pointer; margin-top:1rem;">
-            Place Order →
+          <button type="submit" class="btn btn-primary place-order-btn" id="placeOrderBtn">
+            🎉 Place Order
           </button>
         </form>
       </div>
@@ -141,7 +134,7 @@
       <div class="order-summary-box fade-in-up delay-2">
         <h2>Order Summary</h2>
         <div id="summaryItems" class="summary-items">
-          <!-- Populated by JS -->
+          <!-- Populated by checkout.js -->
         </div>
         <div class="summary-totals">
           <div class="summary-line">
@@ -167,13 +160,30 @@
     </div>
   </section>
 
-  <!-- ── Success Popup ──────────────────────────── -->
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup-card fade-in-up">
-      <div class="popup-icon">🎉</div>
-      <h2>Order Placed!</h2>
-      <p>Thank you for shopping with Creative Jewellery. Your beautiful jewellery is on its way!</p>
-      <p class="popup-redirect">Redirecting to home in <span id="countdown">3</span>s...</p>
+  <!-- ── Order Success Modal ──────────────────── -->
+  <div class="order-success-overlay" id="orderSuccessModal">
+    <div class="order-success-card fade-in-up">
+      <div class="success-confetti">🎉</div>
+      <h2>Order Placed Successfully!</h2>
+      <p>Thank you for shopping with <strong>Creative Jewellery</strong>. Your beautiful jewellery is on its way!</p>
+      <div class="success-details">
+        <div class="success-detail-row">
+          <span>Receipt No</span>
+          <strong id="successReceiptNo">#0000</strong>
+        </div>
+        <div class="success-detail-row">
+          <span>Order Date</span>
+          <strong id="successDate">—</strong>
+        </div>
+        <div class="success-detail-row">
+          <span>Order Total</span>
+          <strong id="successTotal" class="text-gold">$0.00</strong>
+        </div>
+      </div>
+      <div class="success-actions">
+        <button class="btn btn-primary" id="redownloadReceipt">📄 Download Receipt</button>
+        <button class="btn btn-outline" id="returnHome">🏠 Return Home</button>
+      </div>
     </div>
   </div>
 
@@ -219,74 +229,12 @@
     </div>
   </footer>
 
-  <script>
-    // Hamburger
-    const hamburger = document.getElementById('hamburger');
-    const navLinks  = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-
-    // ── Load cart summary ───────────────────────
-    function loadSummary() {
-      const cart    = JSON.parse(localStorage.getItem('cart')) || [];
-      const wrap    = document.getElementById('summaryItems');
-      let total = 0;
-      if (cart.length === 0) {
-        wrap.innerHTML = '<p style="color:#aaa;font-size:.9rem;">Your cart is empty.</p>';
-      } else {
-        wrap.innerHTML = cart.map(i => {
-          total += parseFloat(i.price);
-          return `<div class="summary-item"><span>💎 ${i.name}</span><span>$${parseFloat(i.price).toFixed(2)}</span></div>`;
-        }).join('');
-      }
-      document.getElementById('summarySubtotal').textContent = `$${total.toFixed(2)}`;
-      document.getElementById('summaryTotal').textContent    = `$${total.toFixed(2)}`;
-    }
-    loadSummary();
-
-    // ── Payment sub-form toggle ──────────────────
-    const paymentSelect   = document.getElementById('paymentMethod');
-    const creditCardForm  = document.getElementById('creditCardForm');
-    const paypalForm      = document.getElementById('paypalForm');
-    const bankTransferForm = document.getElementById('bankTransferForm');
-
-    paymentSelect.addEventListener('change', function() {
-      creditCardForm.style.display   = 'none';
-      paypalForm.style.display       = 'none';
-      bankTransferForm.style.display = 'none';
-      if (this.value === 'credit_card') creditCardForm.style.display = 'block';
-      else if (this.value === 'paypal') paypalForm.style.display     = 'block';
-      else if (this.value === 'bank_transfer') bankTransferForm.style.display = 'block';
-    });
-
-    // ── Form submit ──────────────────────────────
-    document.getElementById('orderForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const fname   = document.getElementById('pfname').value.trim();
-      const email   = document.getElementById('pemail').value.trim();
-      const phone   = document.getElementById('pphone').value.trim();
-      const address = document.getElementById('paddress').value.trim();
-      const payment = document.getElementById('paymentMethod').value;
-
-      if (!fname || !email || !phone || !address || !payment) {
-        alert('Please fill in all required fields.');
-        return;
-      }
-
-      // Show popup
-      document.getElementById('popupOverlay').style.display = 'flex';
-      localStorage.removeItem('cart');
-
-      // Countdown
-      let count = 3;
-      const timer = setInterval(() => {
-        count--;
-        document.getElementById('countdown').textContent = count;
-        if (count <= 0) {
-          clearInterval(timer);
-          window.location.href = 'index.html';
-        }
-      }, 1000);
-    });
-  </script>
+  <!-- jsPDF CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/receipt.js"></script>
+  <script src="js/checkout.js"></script>
 </body>
 </html>

@@ -155,3 +155,59 @@
     font-size: 1.5rem;
   }
 }
+
+/* ─── Field Errors (inline validation) ──────────── */
+.field-error {
+  display: block;
+  font-size: 0.78rem;
+  color: #e74c3c;
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+.input-error {
+  border-color: #e74c3c !important;
+  box-shadow: 0 0 0 3px rgba(231,76,60,0.12) !important;
+}
+
+/* ─── Password Wrap ──────────────────────────────── */
+.password-wrap {
+  position: relative;
+}
+
+.password-wrap input {
+  width: 100%;
+  padding-right: 2.8rem;
+}
+
+.toggle-pw {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  color: #aaa;
+  transition: color var(--transition);
+  padding: 0;
+}
+
+.toggle-pw:hover { color: var(--gold); }
+
+/* ─── Hint Small ─────────────────────────────────── */
+.hint-small {
+  font-size: 0.75rem;
+  color: #aaa;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ─── Auth Accent Logo ───────────────────────────── */
+.auth-accent-logo {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}

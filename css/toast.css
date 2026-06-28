@@ -1,0 +1,42 @@
+/* css/toast.css */
+/* Toast container is positioned at top‑right corner. */
+#toast-container {
+  /* positioning already set via JS inline styles, but can be overridden */
+}
+
+.toast {
+  min-width: 200px;
+  max-width: 300px;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  border-radius: 4px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast-hide {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.toast-success {
+  background-color: #28a745; /* green */
+}
+
+.toast-error {
+  background-color: #dc3545; /* red */
+}
+
+.toast-info {
+  background-color: #17a2b8; /* blue */
+}
